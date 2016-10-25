@@ -68,7 +68,7 @@ return [
 
         'mysql_wordpress' => [
             'driver' => 'mysql',
-            'host' =>  'latenightmunchies.com',
+            'host' =>  'latenitemunchies.com',
             'port' => 3306,
             'database' => 'latelate3092614262',
             'username' => 'latelate30926142',
