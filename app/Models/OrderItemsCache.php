@@ -22,6 +22,27 @@ class OrderItemsCache extends Model
 
     protected $guarded = [];
 
+	protected $meta = [];
+
+	protected $tax;
+
+	protected $itemMetas = [];
+
+	public function setItemMeta(ItemMeta $itemMeta)
+	{
+		$this->hasOne('item_meta');
+		$this->itemMetas[] = $itemMeta;
+	}
+
+	/**
+	 * Sets the inverse of a Many To One relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function orderItemmetaCache()
+	{
+		//specify a one to many (inverse) relationship with key and foreign keys set to 'order_item_id'
+		return $this->hasMany('App\Models\OrderItemmetaCache', 'order_item_id', 'order_item_id');
+	}
     
 	/**
 	 * @return mixed
@@ -89,6 +110,19 @@ class OrderItemsCache extends Model
 		return $this;
 	}
 
+	public function addMeta($meta)
+	{
+		$this->meta[] = $meta;
+	}
 
+	public function addTax($tax)
+	{
+		$this->tax = $tax;
+	}
+
+	public function getItemMetas()
+	{
+		return $this->itemMetas;
+	}
 
 }

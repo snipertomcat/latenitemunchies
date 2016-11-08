@@ -17,9 +17,9 @@ class OrderItems extends Model
         'order_id'
     ];
 
-    public function __construct(array $attributes)
+    public function __construct(array $attributes=[])
     {
         parent::__construct($attributes);
-        print_r($this);
+
     }
 }

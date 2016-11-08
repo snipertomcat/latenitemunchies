@@ -149,7 +149,21 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="startbootstrap4">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="symfony-dev">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="todoparrot">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

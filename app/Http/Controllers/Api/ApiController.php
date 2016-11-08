@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-
 use App\Models\Managers\OrderManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
@@ -18,7 +17,6 @@ class ApiController extends Controller
 
     public function __construct(\Illuminate\Database\Eloquent\Builder $builder, OrderManager $orderManager)
     {
-        //parent::__construct();
         $this->builder = $builder;
         $this->orderManager = $orderManager;
     }
