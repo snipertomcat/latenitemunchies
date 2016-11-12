@@ -27,19 +27,7 @@ class StoreRepository
             //Query the wordpress db to find order information about the passed in orderId:
             $externalOrderItem = \DB::connection('mysql_wordpress')->select('select * from wp_zs7hab2d9c_woocommerce_order_items where order_id = ?', [$orderId]);
 
-            foreach ($externalOrderItem as $orderItem) {
-                //set some properties for each record:
-                $properties = [
-                    'order_item_id' => $orderItem->order_item_id,
-                    'order_item_name' => $orderItem->order_item_name,
-                    'order_item_type' => $orderItem->order_item_type,
-                    'order_id' => $orderItem->order_id
-                ];
-                //create a local record of the order:
-                $orderItems[] = OrderItemsCache::create($properties);
-            }
-
-            return $orderItems;
+            return $externalOrderItem;
         }
     }
 
@@ -76,6 +64,16 @@ class StoreRepository
         $customer = Customer::create($properties);
 
         return $properties;
+    }
+
+    /**
+     * Calls private methods to compile all order items including their respective item meta data. Acts more as a
+     * facade to the functionality included with this repository.
+     * @param $orderId
+     */
+    public function compileOrders($orderId)
+    {
+        $orderItems = $this->getOrderItems($orderId);
     }
 
     /**

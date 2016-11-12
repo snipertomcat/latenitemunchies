@@ -8,13 +8,15 @@ use App\Models\Customer;
 
 class OrderBuilder implements BuilderInterface
 {
-    protected $orderData;
+    protected $orderItems;
+
+    protected $orderItemmeta;
 
     protected $customerData;
 
     public function build()
     {
-        // TODO: Implement build() method.
+
     }
 
     public function setOrderData($orderData)
@@ -25,6 +27,11 @@ class OrderBuilder implements BuilderInterface
     public function setCustomerData($customerData)
     {
         $this->customerData = $customerData;
+    }
+
+    public function setItemmetaData($itemmetaData)
+    {
+        $this->orderItemmeta = $itemmetaData;
     }
 
     /**

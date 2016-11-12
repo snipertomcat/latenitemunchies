@@ -3,6 +3,8 @@
 namespace App\Models\Facade;
 
 use App\Models\Builder\BuilderInterface;
+use App\Models\Builder\OrderBuilder;
+use App\Models\Repository\StoreRepository;
 
 class DeliveryFacade
 {
@@ -12,6 +14,14 @@ class DeliveryFacade
     /** @var array $builders */
     protected $builders = [];
 
+    public function __construct(StoreRepository $storeRepository)
+    {
+        $this->storeRepository = $storeRepository;
+        array_add($this->builders, 'order', '');
+        array_add($this->builders, 'delivery',  '');
+        array_add($this->builders, 'itemmeta', '');
+    }
+
     public function getStoreData($orderId)
     {
 
@@ -19,14 +29,21 @@ class DeliveryFacade
 
     public function addBuilder($name, BuilderInterface $builder)
     {
-        $this->builders[$name] = $builder;
+        if (array_key_exists($name, $this->builders)) {
+            $this->builders[$name] = $builder;
+        }
     }
 
     /**
      * This method utilizes all the added builder classes and creates a stand-alone delivery object.
      */
-    public static function createDelivery()
+    public function createDelivery($orderId)
     {
-
+        if (isset($this->builders['order'])) {
+            /** @var OrderBuilder $orderBuilder */
+            $orderBuilder = $this->builders['order'];
+        }
     }
+
+
 }
